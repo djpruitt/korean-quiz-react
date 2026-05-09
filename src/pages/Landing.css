@@ -1,0 +1,98 @@
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 24px;
+  gap: 48px;
+  min-height: 100svh;
+  box-sizing: border-box;
+}
+
+.landing-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.landing-flag {
+  font-size: 72px;
+  line-height: 1;
+}
+
+.landing-title {
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  margin: 0;
+  color: var(--text-h);
+}
+
+.landing-subtitle {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--accent);
+  margin: 0;
+}
+
+.landing-description {
+  font-size: 18px;
+  color: var(--text);
+  max-width: 440px;
+  margin: 8px 0 0;
+}
+
+.landing-cards {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 48px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  background: var(--bg);
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+  min-width: 240px;
+  text-align: center;
+}
+
+.mode-card:hover {
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.mode-card-icon {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.mode-card h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.mode-card p {
+  font-size: 15px;
+  color: var(--text);
+  max-width: 220px;
+}
+
+.mode-card-cta {
+  margin-top: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent);
+}
