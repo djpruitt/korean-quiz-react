@@ -13,10 +13,17 @@ interface FlashcardPageProps {
   cards: Card[]
   title: string
   romanizationOnFront?: boolean
-  nameOnFront?: boolean
 }
 
-export default function FlashcardPage({ cards, title, romanizationOnFront = false, nameOnFront = false }: FlashcardPageProps) {
+function speak(text: string) {
+  window.speechSynthesis.cancel()
+  const utterance = new SpeechSynthesisUtterance(text)
+  utterance.lang = 'ko-KR'
+  utterance.rate = 0.8
+  window.speechSynthesis.speak(utterance)
+}
+
+export default function FlashcardPage({ cards, title, romanizationOnFront = false }: FlashcardPageProps) {
   const { card, deck, index, flipped, setFlipped, goTo, randomize, reversed, toggleReversed } = useFlashcards(cards)
 
   const badge = (
@@ -28,17 +35,13 @@ export default function FlashcardPage({ cards, title, romanizationOnFront = fals
   const front = reversed ? (
     <div className="card-face card-front">
       {badge}
-      {romanizationOnFront
-        ? <p className="card-name">{card.name}</p>
-        : <p className="card-romanization-large">{card.romanization}</p>
-      }
+      <p className="card-romanization-large">{card.romanization}</p>
       <p className="card-hint-text">Click to reveal</p>
     </div>
   ) : (
     <div className="card-face card-front">
       {badge}
       <p className="card-character">{card.character}</p>
-      {nameOnFront && <p className="card-name">{card.name}</p>}
       {romanizationOnFront && <p className="card-romanization-large">{card.romanization}</p>}
       <p className="card-hint-text">Click to reveal</p>
     </div>
@@ -48,17 +51,15 @@ export default function FlashcardPage({ cards, title, romanizationOnFront = fals
     <div className="card-face card-back">
       {badge}
       <p className="card-character card-character--back">{card.character}</p>
-      {nameOnFront && <p className="card-name">{card.name}</p>}
       {romanizationOnFront && <p className="card-romanization-large">{card.romanization}</p>}
     </div>
   ) : (
     <div className="card-face card-back">
       {badge}
       {romanizationOnFront
-        ? <p className="card-name">{card.name}</p>
+        ? null
         : <>
-            {!nameOnFront && <p className="card-character card-character--back">{card.character}</p>}
-            {!nameOnFront && <p className="card-name">{card.name}</p>}
+            <p className="card-character card-character--back">{card.character}</p>
             <p className="card-romanization-large">{card.romanization}</p>
           </>
       }
@@ -92,6 +93,9 @@ export default function FlashcardPage({ cards, title, romanizationOnFront = fals
         </button>
         <button className={`nav-btn ${reversed ? 'nav-btn--active' : ''}`} onClick={toggleReversed}>
           Reverse
+        </button>
+        <button className="nav-btn" onClick={() => speak(card.character)} title="Play pronunciation">
+          🔊
         </button>
       </div>
     </div>

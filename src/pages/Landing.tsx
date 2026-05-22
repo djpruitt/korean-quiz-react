@@ -32,6 +32,12 @@ export default function Landing() {
           <p>Learn Native Korean numbers 1 through 10 with pronunciation and romanization.</p>
           <span className="mode-card-cta">Start Practice →</span>
         </Link>
+        <Link to="/hangul-quiz" className="mode-card">
+          <div className="mode-card-icon">🎯</div>
+          <h2>Hangul Quiz</h2>
+          <p>Test your knowledge — identify the romanization for each Hangul character.</p>
+          <span className="mode-card-cta">Start Quiz →</span>
+        </Link>
       </div>
     </div>
   )
