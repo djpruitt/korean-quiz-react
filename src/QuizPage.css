@@ -79,6 +79,8 @@
   box-shadow: var(--shadow);
   padding: 32px;
   box-sizing: border-box;
+  /* Firefox requires an explicit 3D transform to honour backface-visibility */
+  transform: rotateY(0deg);
 }
 
 .card-back {
